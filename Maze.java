@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Maze
 {
-	@SuppressWarnings("unchecked")
+	//@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws IOException
 	{
 		//declarar um buffer para puder ler inputs
@@ -21,7 +21,6 @@ public class Maze
 
 		if (nCorridors < 1 || nCorridors > 50000) return;
 
-		int [][] antecessor = new int[nRooms][nRooms];
 		int [][] shorterPath = new int[nRooms][nRooms];
 
 		for (int i = 0; i < nRooms; i++)
@@ -33,8 +32,6 @@ public class Maze
 
 				else
 					shorterPath[i][j] = Integer.MAX_VALUE;
-
-				antecessor[i][j] = -1;
 			}
 		}
 
@@ -55,7 +52,6 @@ public class Maze
 			else 
 				cost = Integer.parseInt(corridorsInf[3]);
 
-			antecessor[i][j] = i;
 			shorterPath[i][j] = cost;
 		}
 
@@ -73,43 +69,40 @@ public class Maze
 		System.out.println();
 		System.out.println();*/
 
-		for (int k = 1; k < nRooms; k++)
+		for (int k = 0; k < nRooms; k++)
 		{
 			//System.out.println("k = " + k);
-			for (int i = 0; i < nRooms; i++)
+			for (int j = 0; j < nRooms; j++)
 			{
-				for (int j = 0; j < nRooms; j++)
+				int verifica;
+
+				if(shorterPath[0][k] == Integer.MAX_VALUE || shorterPath[k][j] == Integer.MAX_VALUE)
+					verifica = Integer.MAX_VALUE;
+
+				else
+					verifica = shorterPath[0][k] + shorterPath[k][j];
+
+				//System.out.println(shorterPath[i][k] + " + " + shorterPath[k][j] +  " = " + verifica);
+				if (shorterPath[0][j] > verifica)
 				{
-					int verifica;
-
-					if(shorterPath[i][k] == Integer.MAX_VALUE || shorterPath[k][j] == Integer.MAX_VALUE)
-						verifica = Integer.MAX_VALUE;
-
-					else
-						verifica = shorterPath[i][k] + shorterPath[k][j];
-
-					//System.out.println(shorterPath[i][k] + " + " + shorterPath[k][j] +  " = " + verifica);
-					if (shorterPath[i][j] > verifica && shorterPath[i][j] > 0)
-					{
-						//System.out.println("i = " + i + " j = " + j);
-						shorterPath[i][j] = verifica;
-						antecessor[i][j] = antecessor[i][k];
-					}
+					//System.out.println("i = " + i + " j = " + j);
+					shorterPath[0][j] = verifica;
 				}
 			}
-			for (int i = 0; i < nRooms; i++)
-			{
-				System.out.println(Arrays.toString(antecessor[i]));
-			}
+			/*
+				for (int i = 0; i < nRooms; i++)
+				{
+					System.out.println(Arrays.toString(antecessor[i]));
+				}
 
-			System.out.println();
+				System.out.println();*/
 
-			for (int i = 0; i < nRooms; i++)
-			{
-				System.out.println(Arrays.toString(shorterPath[i]));
-			}
-			System.out.println();
-			System.out.println();
+				/*for (int i = 0; i < nRooms; i++)
+				{
+					System.out.println(Arrays.toString(shorterPath[i]));
+				}
+				System.out.println();
+				System.out.println();*/
 		}
 		System.out.println(shorterPath[0][shorterPath[0].length -1] < 0? "yes" : "no");
 	}
