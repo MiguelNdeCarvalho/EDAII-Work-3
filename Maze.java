@@ -20,10 +20,6 @@ public class Maze
 		//numero de corredores
 		int nCorridors = Integer.parseInt(fistLine[1]);
 
-		//limitacoes do programa
-		if (nRooms < 2 || nRooms > 5000) return;
-		if (nCorridors < 1 || nCorridors > 50000) return;
-
 		//lista com todas as salas
 		Vertices[] listaSalas = new Vertices[nRooms];
 		Arcos[] conjuntoCorredor = new Arcos[nCorridors];
@@ -40,8 +36,6 @@ public class Maze
 
 			int cost = Integer.parseInt(corridorsInf[3]), salaInicial = Integer.parseInt(corridorsInf[0]), salaFinal = Integer.parseInt(corridorsInf[1]);
 			String crocadileBag = corridorsInf[2];
-
-			if (cost < 1 || cost > 100) return;
 
 			if (crocadileBag.compareTo("C") == 0)
 				cost = -cost;
@@ -77,12 +71,11 @@ public class Maze
 		//percorre todas as salas para encontrar o caminho mais curto ate a saida
 		for (Vertices sala : listaSalas)
 		{
-			//calcula se a distancia da sala inicial daquele corredor e o custo de atravesar o corredor é menor que a distancia ate a sala final
+			//calcula se a distancia da sala inicial daquele corredor(se for diferente de infinito) e o custo de atravesar o corredor é menor que a distancia ate a sala final
 			//caso seja entao atualiza a distanca da sala final e o seu predecessor
 			for (Arcos corredor : conjuntoCorredor)
 			{
-				if (corredor.salaInicial.distancia == infinity)
-					continue;
+				if (corredor.salaInicial.distancia == infinity) continue;
 
 				int distancia = corredor.salaInicial.distancia + corredor.peso;
 
