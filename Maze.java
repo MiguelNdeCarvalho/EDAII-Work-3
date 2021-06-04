@@ -8,7 +8,6 @@ public class Maze
 	//definir infinito como o maior numero inteiro de 32 bits
 	static int infinity = Integer.MAX_VALUE;
 
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws IOException
 	{
 		//declarar um buffer para puder ler inputs
@@ -72,10 +71,6 @@ public class Maze
 			conjuntoCorredor[i] = corredor;
 		}
 
-		/*for (Vertices sala : listaSalas)
-			System.out.print(sala.distancia + " ");
-		System.out.println();*/
-
 		//indicar que a sala de partida se encontra a distancia 0
 		listaSalas[0].distancia = 0;
 
@@ -86,6 +81,9 @@ public class Maze
 			//caso seja entao atualiza a distanca da sala final e o seu predecessor
 			for (Arcos corredor : conjuntoCorredor)
 			{
+				if (corredor.salaInicial.distancia == infinity)
+					continue;
+
 				int distancia = corredor.salaInicial.distancia + corredor.peso;
 
 				if (distancia < corredor.salaFinal.distancia)
@@ -94,9 +92,6 @@ public class Maze
 					corredor.salaFinal.predecessor = corredor.salaInicial;
 				}
 			}
-			/*for (Vertices sal : listaSalas)
-				System.out.print(sal.distancia + " ");
-			System.out.println();*/
 		}
 
 		//indicador que sinaliza a existencia de um ciclo no labirinto que apresenta um custo negativo (soma total dos caminhos do ciclo)
