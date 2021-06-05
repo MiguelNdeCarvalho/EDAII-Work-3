@@ -47,16 +47,16 @@ com pesos}, pertencentes aos \textbf{números inteiros}. O grafo contém \textbf
 representam as \textbf{salas}, e \textbf{arcos}, que representam os \textbf{corredores entre
 as salas}.
 
-Cada \textbf{sala} contem o \textbf{identificador da sala}, a \textbf{distância} a que ela se 
+Cada \textbf{sala} contém o \textbf{identificador da sala}, a \textbf{distância} a que ela se 
 encontra da sala inicial e a \textbf{sala que a precede}. 
 
-Cada \textbf{corredor} contem duas salas, a \textbf{sala de origem} e a \textbf{sala de destino},
+Cada \textbf{corredor} contém duas salas, a \textbf{sala de origem} e a \textbf{sala de destino},
 e um \textbf{custo} para o poder atravessar. O \textbf{custo é positivo} quando se encontra um
 \textbf{saco} com uma certa quantia de dinheiro e \textbf{é negativo} quando se encontra um
 \textbf{crocodilo}, sendo necessário gastar uma certa quantia para baixar a ponte e atravessar o
-corredor em segurança, essa quantia é descontada em \textbf{débito} ou \textbf{crédito}.
+corredor em segurança, essa quantia é descontada em \textbf{débito} ou em \textbf{crédito}.
 
-A utilização deste algoritmo baseia-se no caminho mais curto (apresenta um menor custo) desde da
+A utilização deste algoritmo baseia-se no caminho mais curto (apresenta um menor custo) desda
 \textbf{sala inicial} até à \textbf{sala final}, obtendo como resultado a possibilidade do
 Dirk \textbf{perder dinheiro ao percorrer o labirinto}.
 
@@ -121,9 +121,9 @@ de origem}, \textbf{sala de destino}, a representação de um número positivo o
 \textbf{B} ou \textbf{C}) e o \textbf{custo}. Tanto a leitura de input, as afetações realizadas
 e a condição apresentam um custo constante \verb|O(1)|.
 
-Ainda dentro do mesmo ciclo, após a afetação do input as variáveis correspondentes, verificou-se
+Ainda dentro do mesmo ciclo, após a afetação do input às variáveis correspondentes, verificou-se
 se a \textbf{sala de origem e de destino} existem, caso não existam são criadas com um número e
-uma distância que representa o infinito, colocado-as num vetor de salas. Ou seja, apresenta um
+uma distância que representa o infinito, colocando-as num vetor de salas, ou seja, apresenta um
 custo constante \verb|O(1)|. Para além da verificação da existência de sala é criado também um
 corredor com o custo, a \textbf{sala de origem} e a \textbf{sala de destino}, colocando-o no 
 vetor de todos os corredores. Tal como as afetações realizadas acima, esta também tem custo
@@ -186,7 +186,7 @@ onde \verb|E| é o número de \textbf{corredores} do labirinto.
 Na execução do ciclo onde lê o resto dos inputs é criado um array de strings onde o seu tamanho
 varia consoante o número de palavras lidas durante a inserção do input, ocupando assim $\theta(L)$,
 onde \verb|L| é o número de elementos lidos entre espaços. Como em cada ciclo cria um novo array
-a complexidade espacial multiplica pelo número de corredores, tendo então um complexidade de
+a complexidade espacial multiplica pelo número de corredores, tendo então uma complexidade de
 \verb|O(EL)|, onde \verb|E| é o número de corredores.
 
 Ainda no mesmo ciclo, são criados \textbf{salas} e \textbf{corredores} onde as \textbf{salas} e os
@@ -203,7 +203,7 @@ o nosso conhecimento. Quando somado o maior número inteiro de 32 bits com outro
 é criado um overflow, isto significa que os 32 bits não são suficientes para representar esta
 soma. Como solução o processador, para continuar a executar corretamente o programa, coloca
 todos os bits a zero e continua a somar o restante a partir desse ponto, originando um número
-errado. Para solucionar este problema bastou apenas fazer uma verificação onde é
+errado. Para solucionar este problema bastou apenas fazer uma verificação, onde é
 verificado se a distância da respetiva sala é igual ao número inteiro máximo de 32 bits. 
 % -------------------------------------------------------------------------------------------
 \end{document}
